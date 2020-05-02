@@ -42,4 +42,18 @@ const hobbit = {
     meals: ['breakfast', 'second breakfast', 'elevenses', 'lunch', 'afternoon tea', 'dinner', 'supper']
 }
 
-console.log(hobbit.meals[3]);
+// console.log(hobbit.meals[3]);
+
+// Arrays of objects
+// Create 3-5 objects, each with a name and a jobTitle. Use people you know, or characters from fiction, or your own inventions.
+// Store these objects in an array.
+// Iterate over the array and use console.log to show each person's job title and name.
+
+const peeps = [
+    {name: 'Sarah', jobTitle: 'programmer'},
+    {name: 'Nathan', jobTitle: 'attorney'},
+    {name: 'Holly', jobTitle: 'student'},
+    {name: 'Gazelle', jobTitle: 'dog being cute so we do not kill her'}
+];
+
+peeps.forEach(person => console.log(`${person.name} is the ${person.jobTitle}`));
