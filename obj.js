@@ -64,15 +64,14 @@ peeps.forEach(person => console.log(`${person.name} is the ${person.jobTitle}`))
 // What gets printed out for the owner?
 // Adjust the message so that people with no boss display "${title} ${name} doesn't report to anybody." - for example, Founder John doesn't report to anybody.
 
-const peeps = [
+const peeps2 = [
     {name: 'Sarah', jobTitle: 'programmer', boss: 'Holly'},
     {name: 'Nathan', jobTitle: 'attorney', boss: 'Holly'},
     {name: 'Holly', jobTitle: 'student'},
     {name: 'Gazelle', jobTitle: 'dog being cute so we do not kill her', boss: 'Sarah'}
 ];
 
-peeps.forEach(person => {if('boss' in person) {
-    console.log(`${person.jobTitle} ${person.name} reports to ${boss}.`);
-} else {
-    console.log(`${person.jobTitle} doesn't report to anyone`)
-}});
+peeps2.forEach(person => ('boss' in person) ?
+    console.log(`${person.jobTitle} ${person.name} reports to ${person.boss}.`):
+    console.log(`${person.jobTitle} ${person.name} doesn't report to anyone`)
+);
