@@ -331,22 +331,54 @@ findOne(HEROES, { squad: 'Justice League' });
 // 8a. BONUS II: A Database Method
 // Let's create a fake database in memory with the same dataset:
 
-// const Database = {
-//   store: {
-//     heroes: [
-//       { id: 1, name: 'Captain America', squad: 'Avengers' },
-//       { id: 2, name: 'Iron Man', squad: 'Avengers' },
-//       { id: 3, name: 'Spiderman', squad: 'Avengers' },
-//       { id: 4, name: 'Superman', squad: 'Justice League' },
-//       { id: 5, name: 'Wonder Woman', squad: 'Justice League' },
-//       { id: 6, name: 'Aquaman', squad: 'Justice League' },
-//       { id: 7, name: 'Hulk', squad: 'Avengers' },
-//     ]
-//   }
-// };
+const Database = {
+  store: {
+    heroes: [
+      { id: 1, name: 'Captain America', squad: 'Avengers' },
+      { id: 2, name: 'Iron Man', squad: 'Avengers' },
+      { id: 3, name: 'Spiderman', squad: 'Avengers' },
+      { id: 4, name: 'Superman', squad: 'Justice League' },
+      { id: 5, name: 'Wonder Woman', squad: 'Justice League' },
+      { id: 6, name: 'Aquaman', squad: 'Justice League' },
+      { id: 7, name: 'Hulk', squad: 'Avengers' },
+    ]
+  },
+  findOne: function (query) {
+    //find the keys in the query object
+    const queryKeys = Object.keys(query);
+    //access heroes array
+    const heroesArr = this.store.heroes
+    console.log(heroesArr)
+    //loop through each item in the array
+    for (let i = 0; i < heroesArr.length; i++) {
+        let matchExists = true;
+        let hero = heroesArr[i];
+        //loop through the queryKeys array
+        for(let i = 0; i < queryKeys.length; i++) {
+            let currKey = queryKeys[i];
+            console.log(currKey, hero[currKey], query[currKey])
+//             // if the values of the query key do not match the array object key break the loop and move to the next object
+            if (hero[currKey] !== query[currKey]) {
+                matchExists = false;
+                break
+            }
+        }
+//         //if there is no match then move to the next hero object or exit loop if it is the last item
+        if (!matchExists) {
+            continue;
+        } else {
+            console.log('matches', hero)
+            return hero;
+        }
+    };
+    console.log('no matches');
+    return null
+}
+};
 // Add a method to Database called findOne and have it behave the same as the findOne function above. However, instead of referencing a HEROES array in the global scope, it should pull from the store in the Database. HINT: You'll want to use this for this...
 
 // The usage should be:
 
-// Database.findOne({ id: 2 });
+Database.findOne({ id: 2 });
 // => { id: 2, name: 'Iron Man', squad: 'Avengers' }
+Database.findOne({id:13})
